@@ -7,19 +7,18 @@ export default function Todo({ todo, toggleTodo }) {
 
     return (
         <div className='container'>
-                                <label>
-
-            <div className='row'>
-                <div className='col-sm'>
-                    <p>{todo.id}</p>
+            <label>
+                <div className='row'>
+                    <div className='col-sm'>
+                        <p>{todo.id}</p>
+                    </div>
+                    <div className='col-sm'>
+                        <p className="col-sm">{todo.title}</p>
+                    </div>
+                    <div className='col-sm'>
+                        <input type="checkbox" checked={todo.complete} onChange={handleTodoClick} className='col-sm form-check'></input>
+                    </div>
                 </div>
-                <div className='col-sm'>
-                    <p className="col-sm">{todo.name}</p>
-                </div>
-                <div className='col-sm'>
-                        <input type="checkbox" checked={todo.complete} onChange={handleTodoClick} className='col-sm'></input>
-                </div>
-            </div>
             </label>
 
         </div>
