@@ -31,35 +31,36 @@ export default function UITable() {
 
   return (
     <>
-    <div className='container'>
-    <br />
-      <h1>Results</h1>
-      <TableContainer component={Paper}>
-        <Table className='table'>
-          <TableHead className='thead-dark'>
-            <TableRow>
-              {
-                columns?.map(col => {
-                  return (<TableCell scope='col' align='left'>{col.title}</TableCell>)
-                })}
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {todos?.map(todo => {
-              return (
-                <TableRow key={todo.id}>
-                  <TableCell scope='row' key={todo.id} component='th'>
-                    <Link to= '/viewPosting' state={{ todo: todo}}>{todo.title}</Link>
-                  </TableCell>
-                  <TableCell key={todo.company} align='left'>{todo.company}</TableCell>
-                  <TableCell key={todo.dateApplied} align='left'>{todo.dateApplied}</TableCell>
-                </TableRow>
-              )
-            })}
-          </TableBody>
-        </Table>
-      </TableContainer>
-    </div>
+      <div className='container-custom'>
+        <br />
+        <h1>Results</h1>
+        <TableContainer component={Paper}>
+          <Table className='table'>
+            <TableHead className='thead-dark'>
+              <TableRow>
+                {
+                  columns?.map(col => {
+                    return (<TableCell scope='col' align='left'>{col.title}</TableCell>)
+                  })}
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {todos?.map(todo => {
+                return (
+                  <TableRow key={todo.id}>
+                    <TableCell scope='row' key={todo.id} component='th'>
+                      <Link to='/viewPosting' state={{ todo: todo }}>{todo.title}</Link>
+                    </TableCell>
+                    <TableCell key={todo.company} align='left'>{todo.company}</TableCell>
+                    <TableCell key={todo.dateApplied} align='left'>{todo.dateApplied}</TableCell>
+                  </TableRow>
+                )
+              })}
+            </TableBody>
+          </Table>
+        </TableContainer>
+        <br />
+      </div>
     </>
   );
 }

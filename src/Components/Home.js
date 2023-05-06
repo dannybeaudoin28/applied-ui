@@ -3,7 +3,7 @@ import '../app.css';
 
 export default function Home() {
   return (
-    <div className='container'>
+    <div className='container-custom'>
       <br />
       <h1>Welcome to the application history tracker</h1>
       <br />

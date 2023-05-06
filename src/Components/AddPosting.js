@@ -43,7 +43,7 @@ export default function AddPosting() {
     }
 
     return (
-        <div className='container'>
+        <div className='container-custom'>
             <br />
             <h1>Add an application to track</h1>
             <label>Add title of posting: </label>
