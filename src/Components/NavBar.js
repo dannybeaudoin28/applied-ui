@@ -1,11 +1,6 @@
-import React, { useState, useEffect } from 'react'
-import { Nav, Navbar, Container, NavDropdown } from 'react-bootstrap'
-import { Link, Routes, Route } from 'react-router-dom';
-import UITable from './UITable';
-import AddPosting from './AddPosting'
-import Home from './Home'
-
-
+import React from 'react'
+import { Nav, Navbar, Container } from 'react-bootstrap'
+import { Link } from 'react-router-dom';
 
 export default function NavBar({todos}) {
    // const [isOpen, setOpen] = useState()
@@ -22,6 +17,6 @@ export default function NavBar({todos}) {
                     </Nav>
                 </Navbar.Collapse>
             </Container>
-        </Navbar>
+        </Navbar>  
     );
 }

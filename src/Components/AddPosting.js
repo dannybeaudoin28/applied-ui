@@ -10,7 +10,7 @@ export default function AddPosting({ }) {
         axios.post("http://192.168.0.102:8888/api/postings", {
             title: title,
             complete: false
-        }).then(response => console.log(response))
+        })
         if (title === '') return
         todoNameRef.current.value = null
     }

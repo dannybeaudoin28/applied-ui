@@ -1,21 +1,53 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import TodoList from "./TodoList"
 import axios from "axios"
 import './app.css'
-import UITable from "./Components/UITable"
 import NavBar from "./Components/NavBar"
-import { Routes, Route } from 'react-router-dom';
-import AddPosting from './Components/AddPosting'
-import Home from './Components/Home'
-
+import RoutePaths from "./Routes/RoutePaths"
+import fetchPostings from './Services/PostingService'
+import {
+    useQuery,
+    useMutation,
+    useQueryClient,
+    QueryClient,
+    QueryClientProvider,
+} from '@tanstack/react-query'
 
 const LOCAL_STORAGE_KEY = 'todoApp.todos'
-const BAD_REQ_ERR = 'ERR_BAD_REQUES'
 
 let init = true
 
+// function GetPostings() {
+//     const {
+//         status,
+//         error,
+//         data: todos,
+//     } = useQuery({
+//         queryKey: ["todos"],
+//         queryFn: fetchPostings
+//     })
+//     if (status === 'loading') return <h1>Loading...</h1>
+//     if (status === 'error') return <h2>{JSON.stringify(error)}</h2>
+//     return todos
+// }
+
+
 function App() {
-    const [todos, setTodos] = useState([])
+    //const queryClient = useQueryClient()
+
+    //const [todos, setTodos] = useState()
+    //const { todos, setTodos } = GetPostings();
+
+    const {
+        status,
+        error,
+        data: todos,
+    } = useQuery({
+        queryKey: ["todos"],
+        queryFn: fetchPostings
+    })
+
+    console.log('todos is: ', todos)
 
     let todo = {}
 
@@ -36,34 +68,13 @@ function App() {
         ]
     )
 
-    while (init) {
-        init = false
-        getPosts()
-    }
-
-    function getPosts() {
-        axios.get("http://192.168.0.102:8888/api/postings").then((response) => {
-            setTodos(response.data)
-        }).catch(error => {
-            if (error.code === BAD_REQ_ERR) {
-                console.error(error)
-            }
-        })
-    }
-
-    function toggleTodo(id) {
-        const newTodos = [...todos]
-        const todo = newTodos.find(todo => todo.id === id)
-        todo.complete = !todo.complete
-    }
-
     function handleClearTodos() {
         let newTodos = []
         newTodos = todos.filter(todo => todo.complete)
         newTodos.forEach(d => {
-            axios.delete("http://192.168.0.102:8888/api/postings/" + d.id)
+            // axios.delete("http://192.168.0.102:8888/api/postings/" + d.id)
         })
-        setTodos([])
+        //setTodos([])
     }
 
     return (
@@ -72,12 +83,8 @@ function App() {
                 integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
                 crossOrigin="anonymous"></link>
             <NavBar />
-            <Routes>
-                <Route path='/home' element={<Home />} />
-                <Route path='/addPosting' element={<AddPosting />} />
-                <Route path='/viewPostings' element={<UITable  columns={columns} todos={todos} toggleTodo={toggleTodo} />} />
-            </Routes>
-            <TodoList columns={columns} todos={todos} toggleTodo={toggleTodo} />
+            <RoutePaths columns={columns} todos={todos} />
+            {/* <TodoList columns={columns} todos={todos} toggleTodo={toggleTodo} /> */}
             {/* <Table columns={columns} todos={todos} toggleTodo={toggleTodo}></Table> */}
             {/* <UITable columns={columns} todos={todos} toggleTodo={toggleTodo}></UITable>
             <div>{todos.filter(todo => !todo.complete).length} left todo</div>

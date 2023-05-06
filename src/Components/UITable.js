@@ -1,27 +1,21 @@
 import React from 'react'
 import { Table, TableContainer, TableHead, TableRow, Paper, TableCell, TableBody } from "@material-ui/core"
 
-
-
-export default function UITable({ columns, todos, toggleTodo }) {
+export default function UITable({ columns, todos }) {
   let localTodo;
-  function handleTodoClick() {
-    toggleTodo(localTodo.id)
-  }
-
   return (
     <TableContainer component={Paper}>
       <Table className='table'>
         <TableHead className='thead-dark'>
           <TableRow>
             {
-              columns.map(col => {
+              columns?.map(col => {
                 return (<TableCell scope='col' align='right'>{col.title}</TableCell>)
               })}
           </TableRow>
         </TableHead>
         <TableBody>
-          {todos.map(todo => {
+          {todos?.map(todo => {
             localTodo = todo
             return (
               <TableRow key={todo.id}>
@@ -30,7 +24,7 @@ export default function UITable({ columns, todos, toggleTodo }) {
                 </TableCell>
                 <TableCell key={todo.title} align='right'>{todo.title}</TableCell>
                 <TableCell align='right' key={todo.id}>
-                  <input type="checkbox" checked={todo.complete} todo={todo} onChange={handleTodoClick} className='col-sm form-check'></input>
+                  <input type="checkbox" checked={todo.complete} todo={todo} className='col-sm form-check'></input>
                 </TableCell>
               </TableRow>
             )
