@@ -12,6 +12,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.4.0",
     "axios-observable": "^2.0.0",
+    "cdbreact": "^1.5.14",
     "material-icons": "^1.13.6",
     "material-react-table": "^1.11.1",
     "material-table": "^2.0.3",

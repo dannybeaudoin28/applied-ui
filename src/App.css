@@ -1,3 +1,23 @@
-todo{
-    margin-right: 5rem;
+.container {
+    height:max-content;
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
+    text-align: center;
+}
+
+.footer{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #111;
+    height: auto;
+    width: 100%;
+    padding-top: 40px;
+    color: black;
+}
+
+h1 {
+    text-align: center;
 }
