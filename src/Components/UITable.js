@@ -2,17 +2,22 @@ import React from 'react';
 import fetchPostings from '../Services/PostingService';
 import { Table, TableContainer, TableHead, TableRow, Paper, TableCell, TableBody } from "@material-ui/core";
 import { useQuery } from '@tanstack/react-query';
+import { Link } from 'react-router-dom';
 
 export default function UITable() {
   const columns = React.useMemo(
     () => [
       {
-        title: 'ID',
-        field: 'id'
+        title: 'Title',
+        field: 'title'
       },
       {
-        title: 'title',
-        field: 'title'
+        title: 'Company',
+        field: 'company'
+      },
+      {
+        title: 'Date Applied',
+        field: 'dateApplied'
       }
     ]
   );
@@ -26,7 +31,8 @@ export default function UITable() {
 
   return (
     <>
-      <br />
+    <div className='container'>
+    <br />
       <h1>Results</h1>
       <TableContainer component={Paper}>
         <Table className='table'>
@@ -34,7 +40,7 @@ export default function UITable() {
             <TableRow>
               {
                 columns?.map(col => {
-                  return (<TableCell scope='col' align='right'>{col.title}</TableCell>)
+                  return (<TableCell scope='col' align='left'>{col.title}</TableCell>)
                 })}
             </TableRow>
           </TableHead>
@@ -43,15 +49,17 @@ export default function UITable() {
               return (
                 <TableRow key={todo.id}>
                   <TableCell scope='row' key={todo.id} component='th'>
-                    {todo.id}
+                    <Link to= '/viewPosting' state={{ todo: todo}}>{todo.title}</Link>
                   </TableCell>
-                  <TableCell key={todo.title} align='right'>{todo.title}</TableCell>
+                  <TableCell key={todo.company} align='left'>{todo.company}</TableCell>
+                  <TableCell key={todo.dateApplied} align='left'>{todo.dateApplied}</TableCell>
                 </TableRow>
               )
             })}
           </TableBody>
         </Table>
       </TableContainer>
+    </div>
     </>
   );
 }

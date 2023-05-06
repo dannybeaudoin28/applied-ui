@@ -4,10 +4,13 @@ import '../app.css';
 export default function Home() {
   return (
     <div className='container'>
-      <br/>
+      <br />
       <h1>Welcome to the application history tracker</h1>
-      <br/>
-      <p>This application is used to record jobs that I have applied for since graduation, and gain insights related to what I might be doing wrong</p>
+      <br />
+      <p>
+        This application is used to record jobs that I have applied for since graduation, and gain
+        insights related to what I might be doing wrong
+      </p>
     </div>
   )
 }

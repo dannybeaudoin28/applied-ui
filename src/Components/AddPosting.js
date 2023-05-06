@@ -1,19 +1,21 @@
-import React, { useRef } from 'react'
-import axios from "axios"
-import '../app.css'
+import React, { useRef } from 'react';
+import axios from "axios";
+import '../app.css';
 
-export default function AddPosting({ }) {
-    const todoNameRef = useRef()
+export default function AddPosting() {
+    const postingNameRef = useRef();
+    const postingCompanyRef = useRef();
 
-    function handleAddTodo(e) {
-        const title = todoNameRef.current.value
-    
+    function handleAddPosting(e) {
+        const title = postingNameRef.current.value
+        const company = postingCompanyRef.current.value
         axios.post("http://192.168.0.102:8888/api/postings", {
             title: title,
-            complete: false
+            company: company
         })
-        if (title === '') return
-        todoNameRef.current.value = null
+        if (title === '' || company === '') return;
+        postingNameRef.current.value = null;
+        postingCompanyRef.current.value = null;
     }
 
     return (
@@ -22,8 +24,13 @@ export default function AddPosting({ }) {
             <h1>Add an application to track:</h1>
             <label>Add title of posting: </label>
             <br />
-            <input ref={todoNameRef} type="text" className="form-group" />
-            <button onClick={handleAddTodo} className="btn btn-primary">Add Todo</button>
+            <input ref={postingNameRef} type="text" className="form-group" />
+            <br />
+            <label>Company Name: </label>
+            <br />
+            <input ref={postingCompanyRef} type='text' className='form-group' />
+            <br />
+            <button onClick={handleAddPosting} className="btn btn-primary">Add Todo</button>
         </div>
     )
 }
