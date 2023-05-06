@@ -57,3 +57,8 @@ h1 {
     margin-left: 3rem;
     color: white;
 }
+
+.button-img {
+    width: 2rem;
+    height: 2rem;
+}
