@@ -1,10 +1,12 @@
 import React from 'react';
-import fetchPostings from '../Services/PostingService';
+import  ApiCalls  from '../Services/PostingService.js'
 import { Table, TableContainer, TableHead, TableRow, Paper, TableCell, TableBody } from "@material-ui/core";
 import { useQuery } from '@tanstack/react-query';
 import { Link } from 'react-router-dom';
 
 export default function UITable() {
+  const { fetchPostings } = ApiCalls();
+  
   const columns = React.useMemo(
     () => [
       {

@@ -1,8 +1,10 @@
 import React, { useRef } from 'react';
-import axios from "axios";
 import '../app.css';
+import  ApiCalls  from '../Services/PostingService.js'
 
 export default function AddPosting() {
+    const { addPosting } = ApiCalls();
+
     const postingNameRef = useRef();
     const postingCompanyRef = useRef();
     const postingURLRef = useRef();
@@ -21,7 +23,7 @@ export default function AddPosting() {
         const interviewNo = postingInterviewNoRef.current.value
         const hadTask = postingHasTechInterviewRef.current.value
 
-        axios.post("http://192.168.0.102:8888/api/postings", {
+        addPosting({
             title: title,
             company: company,
             url: url,
@@ -30,6 +32,7 @@ export default function AddPosting() {
             interviewNo: interviewNo,
             hadTask: hadTask
         })
+
         if (title === '' || company === '' || url === ''
             || desc === '' || platform === ''
             || interviewNo === '' || hadTask === '') return;
